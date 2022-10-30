@@ -26,14 +26,11 @@ function createPicturesMarkup(galleryItems){
     })
     .join("");
 }
-
-function onClickPicture(evt) {
-  evt.preventDefault();
-  if (!evt.target.classList.contains('gallery__image')) {
+function onClickPicture(event) {
+  if (!event.target.classList('gallery__image')) {
     return;
-  }
+  };
 }
-
 
 
 console.log(galleryItems);
