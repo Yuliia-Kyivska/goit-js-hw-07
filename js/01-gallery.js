@@ -26,14 +26,38 @@ function createPicturesMarkup(galleryItems){
     })
     .join("");
 }
+
+// Реалізація делегування на div.gallery і отримання url великого зображення
 function onClickPicture(event) {
-  if (!event.target.classList('gallery__image')) {
+  event.preventDefault();
+  if (!event.target.classList.contains('gallery__image')) {
     return;
-  };
+  }
+  let src = event.target.getAttribute('data-source');
+  instance.show(() => { 
+    instance.element().querySelector('img').src = src;
+  });
+  
 }
 
+const instance = basicLightbox.create(`
+    <div class="modal">
+       <img
+          class="gallery__image"
+          src=""
+          alt=""
+        />
+        <a>Close</a>
+    </div>
+`, {
+    onShow: (instance) => {
+        instance.element().querySelector('.modal').onclick = instance.close
+    }
+})
 
-console.log(galleryItems);
+
+
+
 
 
 
