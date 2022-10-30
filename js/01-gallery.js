@@ -41,7 +41,7 @@ function onClickPicture(event) {
 }
 
 const instance = basicLightbox.create(`
-    <div class="modal">
+    <div class="modal" id="modal_id">
        <img
           class="gallery__image"
           src=""
@@ -52,10 +52,16 @@ const instance = basicLightbox.create(`
 `, {
     onShow: (instance) => {
         instance.element().querySelector('.modal').onclick = instance.close
-    }
+        document.addEventListener('keydown', modalCloseByKey); 
+  },
+  onClose: (instance) => {
+        document.removeEventListener('keydown', modalCloseByKey); 
+  }
 })
 
-
+function modalCloseByKey(e) {
+if (e.key === 'Escape') instance.close();
+}
 
 
 
